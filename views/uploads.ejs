@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Cutiefy - Upload Songs</title>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <%- include('./partials/nav') %>
+    
+    <!-- Main Content -->
+    <div class="main">
+        <div class="box">
+            <%- include('./partials/banner', { title: 'Uploads' }) %>
+            <%- include('./partials/uploader') %>
+            <%- include('./partials/list', { items: songs, api: '/songs', url: '/player' }) %>
+        </div>
+    </div>
+
+    <script src="/js/upload.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Cutiefy - Player</title>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <%- include('./partials/nav') %>
+    
+    <!-- Dynamic Styling -->
+    <%- 
+        `\<style>
+            .main .box .player input[type='range'] { background-color: rgb(${palette[0]}); }
+            .main .box .player input[type='range']::-webkit-slider-thumb { background-color: rgb(${palette[0]}); }
+            .main .box .player .controls svg { fill: rgb(${palette[0]}) }
+        \</style>`
+    %>
+
+    <!-- Main Content -->
+    <div class="main" id="main" <%- `style="background-color: rgb( ${palette[1]} );"` %>>
+        <div class="box">
+
+            <!-- Music Player -->
+            <div class="player">
+                <img src="<%- song.thumbnail_url %>" alt="Thumbnail" class="thumbnail">
+                <span class="title"><%- song.title %></span>
+                <audio id="audio"><source src="<%- song.url %>"></audio>
+                <input id="progress-bar" type="range" value="0">
+                <div class="controls">
+                    <a href="<%- prevLink %>" id="prev-icon"><%- include('./svgs/backward') %></a>
+                    <span id="play-icon" onclick="onTogglePlay()"><%- include('./svgs/play') %></span>
+                    <span id="pause-icon" onclick="onTogglePlay()" style="display: none;"><%- include('./svgs/pause') %></span>
+                    <a href="<%- nextLink %>" id="next-icon"><%- include('./svgs/forward') %></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/player.js"></script>
+</body>
+
+</html>

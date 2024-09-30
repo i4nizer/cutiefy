@@ -1,0 +1,14 @@
+<div class="card" onclick="window.location.assign(`<%- url %>`)"> 
+    <img src="<%- thumbnail_url %>" alt="">
+    <span class="card-title"><%- title ?? 'Title' %></span >
+    
+    <!-- To Be Enabled After Functionality Achieved -->
+    <!-- <div class="card-options">
+        <span title="Play"><%- include('../svgs/play') %></span>
+        <% if (!isPlaylist) { %>
+            <span id="add-playlist-icon-<%- id %>" onclick="onClickAddToPlaylist(this)" title="Add to Playlits"><%- include('../svgs/plus') %></span>
+            <span id="add-favourites-icon-<%- id %>" onclick="onClickAddToFavourites(this)" title="Add to Favorites"><%- include('../svgs/heart-empty') %></span>
+        <% } %>
+    
+    </div> -->
+</div>

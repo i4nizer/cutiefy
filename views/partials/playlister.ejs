@@ -1,0 +1,37 @@
+<div class="playlister">
+    <input type="search" id="playlister-search" placeholder="Search for songs">
+    <div class="dropdown-list" id="dropdown-list">
+        <!-- Songs are listed here -->
+    </div>
+</div>
+
+
+<script>
+    const playlisterSearch = document.getElementById('playlister-search')
+    const dropdownList = document.getElementById('dropdown-list')
+    let isPlaylisterFetching = false
+
+    // list
+    const listSongs = async (songs) => {
+        dropdownList.innerHTML = ''
+        const title = 'Click to add to Playlist'
+        songs.forEach(song => dropdownList.innerHTML += `<div class="list-item" title="${title}">${song.title}</div>` );
+    }
+
+    // fetch songs based on search
+    playlisterSearch.onchange = async () => {
+        if (isPlaylisterFetching) return
+        isPlaylisterFetching = true
+        
+        const param = playlisterSearch.value
+        await fetch('/songs/' + param)
+            .then(res => res.json())
+            .then(async (data) => {
+                // update dropdown
+                await listSongs(data)
+
+                isPlaylisterFetching = false
+            })
+            .catch(err => console.log(err))
+    }
+</script>

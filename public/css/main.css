@@ -1,0 +1,29 @@
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./nav.css');
+@import url('./home.css');
+@import url('./uploader.css');
+@import url('./playlist.css');
+@import url('./player.css');
+
+
+.main {
+    width: 100%;
+    height: calc(100dvh - 60px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main .box {
+    width: clamp(300px, 100%, 1000px);
+    height: calc(100% - 6dvh);
+
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Cutiefy - Playlist</title>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <%- include('partials/nav') %>
+    
+    <!-- Main Content -->
+    <div class="main">
+        <div class="box">
+            <%- include('partials/banner', { title: playlist.title }) %>
+
+            <form action="/playlists/<%- playlist.id %>" class="song-search-form" id="song-search-form" method="post" style="display: none;">
+                <div class="search-field">
+                    <input type="text" name="songName" class="song-input" id="song-input" placeholder="Search Song">
+                    <input type="hidden" name="songId" id="song-id">
+                    <button type="submit">Add</button>
+                </div>
+                <div id="dropdown" class="dropdown">
+                    <!-- Matching Songs Here -->
+                    
+                </div>
+            </form>
+
+            <%- include('./partials/list', { items: songs, api: '/songs', url: `/player/${playlist.id}` }) %>
+        </div>
+    </div>
+
+<script src="/js/playlist.js"></script>
+</body>
+
+</html>

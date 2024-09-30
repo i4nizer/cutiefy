@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Cutiefy</title>
+</head>
+<body>
+    
+    <!-- Nav Bar -->
+    <%- include('./partials/nav')  %>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="box">
+            
+            <!-- Playlists -->
+            <% if (playlists.length != 0) { %>
+                <div class="category">
+                    <span class="title">Playlists</span>
+                    <div class="cards-box">
+                        <% playlists.forEach(playlist=> { %>
+                            <%- include('./partials/card', { id: playlist.id, url: `/playlists/${playlist.id}` , thumbnail_url: playlist.thumbnail_url, title: playlist.title , isPlaylist: true }) %>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+
+            <!-- Songs -->
+            <% if (songs.length != 0) { %>
+                <div class="category">
+                    <span class="title">All Songs</span>
+                    <div class="cards-box">
+                        <% songs.forEach(song=> { %>
+                            <%- include('./partials/card', { id: song.id, url: `/player/${song.id}`, thumbnail_url: song.thumbnail_url , title: song.title , isPlaylist: false }) %>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+            
+        </div>
+    </div>
+    
+</body>
+</html>

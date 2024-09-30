@@ -1,0 +1,66 @@
+<div class="list" id="list">
+    <% items.forEach(item => { %>
+        <div class="list-item" id="li-<%- item.id %>">
+            <span type="text" id="title-<%- item.id %>" class="title"><%- item.title %></span>
+            <div class="options">
+                <span id="edit-<%- item.id %>" onclick="onItemEdit(this)"><%- include('../svgs/pencil') %></span>
+                <span id="del-<%- item.id %>" onclick="onItemDel(this)"><%- include('../svgs/trash') %></span>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+
+
+<script>
+    const api = `<%- api %>`
+    const url = `<%- url %>`
+    
+    const list = document.getElementById('list')
+    const listItems = list.querySelectorAll('.list-item')
+
+    listItems.forEach(li => li.addEventListener('click', e => {
+        const id = e.target.id
+        if (id.includes('edit') || id.includes('del')) return
+
+        window.location.assign(`${url}/${li.id.substring(3)}`)
+    }))
+    
+
+
+    const onItemEdit = async (item) => {
+        const id = item.id.substring(5)
+        console.log(`Edit id is ${id}`)
+        const oldTitle = document.getElementById(`title-${id}`).textContent
+        
+        const newTitle = prompt(`Enter new name for ${oldTitle}: `, oldTitle)
+        if (newTitle == null) return
+
+        // send changes to api
+        await fetch(api, {
+            method: 'PATCH',
+            body: JSON.stringify({ id: id, title: newTitle }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(async (res) => { if (res.ok) window.location.reload(); console.log(await res.json()) })
+        .catch(err => console.log(err))
+    }
+
+    const onItemDel = async (item) => {
+        const id = item.id.substring(4)
+        console.log(`Del id is ${id}`)
+        const title = document.getElementById(`title-${id}`).textContent
+
+        const delItem = confirm(`Are you sure you want to delete ${title}?`, title)
+        if (!delItem) return
+
+        await fetch(api, {
+            method: 'DELETE',
+            body: JSON.stringify({ id: id }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(async (res) => { if (res.ok) window.location.reload(); console.log(await res.json()) })
+        .catch(err => console.log(err))
+    }
+
+</script>

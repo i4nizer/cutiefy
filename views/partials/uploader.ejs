@@ -1,0 +1,14 @@
+<form action="/songs" id="upload-form" class="upload-form" enctype="multipart/form-data" method="post">
+    <button type="submit" id="upload-btn">
+        <%- include('../svgs/upload') %>
+        <span>Upload</span>
+    </button>
+    <label for="song">
+        <span id="song-name">Select Song</span>
+        <input type="file" name="song" id="song" accept="audio/*" required hidden>
+    </label>
+    <label for="thumbnail">
+        <span id="thumbnail-name">Select Thumbnail</span>
+        <input type="file" name="thumbnail" id="thumbnail" accept="image/*" required hidden>
+    </label>
+</form>

@@ -1,0 +1,76 @@
+<div id="modal" class="modal" style="display: none;">
+    <h3 id="modal-text" class="modal-text">Modal</h3>
+    <div id="modal-btns" class="modal-btns">
+        <a href="#">Okay</a>
+        <a href="#">Cancel</a>
+    </div>
+
+</div>
+
+<script>
+    const modal = document.getElementById('modal')
+    const modalText = document.getElementById('modal-text')
+    const modalBtns = document.getElementById('modal-btns')
+
+    const showModal = (text, buttons) => {
+        modalText.textContent = text
+
+        modalBtns.innerHTML = ''
+        buttons.forEach(btn => {
+            if (btn?.isClose) modalBtns.innerHTML += `<a ${btn.cb ?? ''} onclick="hideModal()">${btn.text ?? 'Close'}</a>`
+            else modalBtns.innerHTML += `<a ${btn.cb ?? ''} href="${btn.url ?? '#'}">${btn.text ?? 'Button'}</a>`
+        })
+
+        modal.style.display = 'flex'
+    }
+
+    const hideModal = () => modal.style.display = 'none'
+</script>
+
+<style>
+    .modal {
+        width: 300px;
+        height: 140px;
+        padding: 20px;
+
+        position: absolute;
+        top: calc(50dvh - 70px);
+        left: calc(50dvw - 150px);
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+
+        border-radius: 16px;
+        background-color: var(--secondary);
+    }
+
+    .modal-text {
+        width: 100%;
+        color: var(--text);
+    }
+
+    .modal-btns {
+        width: 100%;
+        height: fit-content;
+
+        gap: 1dvw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: row;
+    }
+
+    .modal-btns a {
+        width: fit-content;
+        height: fit-content;
+        padding: 10px 15px;
+
+        color: var(--text);
+        text-decoration: none;
+        
+        border-radius: 8px; 
+        background-color: var(--outline);
+    }
+</style>

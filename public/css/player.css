@@ -1,0 +1,71 @@
+/* PLAYER STYLE */
+
+.main .box .player {
+    width: clamp(300px, 100%, 600px);
+    height: 100%;
+
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border-radius: 24px;
+}
+
+.main .box .player img {
+    width: 40%;
+    aspect-ratio: 1 / 1;
+}
+
+.main .box .player input[type='range'] {
+    width: 80%;
+    height: 8px;
+    margin: 20px 0 0 0;
+
+    border: none;
+    border-radius: 5px;
+    appearance: none;
+    background-color: var(--accent);
+}
+
+.main .box .player input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 6px solid white;
+    border-radius: 50%;
+    background-color: var(--accent);
+}
+
+.main .box .player .controls {
+    width: 80%;
+
+    gap: 2dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .box .player .controls svg {
+    width: 30px;
+    height: 30px;
+}
+
+.main .box .player .controls #play-icon,
+.main .box .player .controls #pause-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background-color: var(--text);
+}
+
+.main .box .player input[type='range']::-webkit-slider-thumb:hover,
+.main .box .player .controls span:hover {
+    scale: 1.1;
+}

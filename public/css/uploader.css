@@ -1,0 +1,33 @@
+/* UPLOADER STYLE */
+
+.main .box .upload-form {
+    width: calc(100% - 4dvw);
+    height: fit-content;
+    padding: 10px 2dvw;
+
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    border-radius: 16px;
+    background-color: var(--secondary);
+}
+
+.main .box .upload-form label,
+.main .box .upload-form button {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+
+    color: var(--text);
+    border: none;
+    border-radius: 8px;
+    background-color: var(--outline);
+}
+
+.main .box .upload-form label:hover,
+.main .box .upload-form button:hover {
+    background-color: var(--accent);
+}
